@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PokeMMO Helper Tool</title>
+    <meta name="description" content="A comprehensive helper tool for PokeMMO players featuring item tracking, breeding calculators, and more.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <h1 class="nav-title">PokeMMO Helper</h1>
+                <div class="nav-menu">
+                    <button class="nav-btn" data-tab="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-tab="items">Items</button>
+                    <button class="nav-btn" data-tab="breeding">Breeding</button>
+                    <button class="nav-btn" data-tab="pokedex">Pokédex</button>
+                    <button class="nav-btn" data-tab="tools">Tools</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Dashboard Tab -->
+        <section id="dashboard" class="tab-content active">
+            <div class="container">
+                <h2>Welcome to PokeMMO Helper</h2>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>Quick Stats</h3>
+                        <div id="quick-stats">
+                            <p>Items Tracked: <span id="items-count">0</span></p>
+                            <p>Breeding Projects: <span id="breeding-count">0</span></p>
+                            <p>Pokédex Completion: <span id="pokedex-completion">0%</span></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                      

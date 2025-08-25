@@ -1,0 +1,20 @@
+{
+  "name": "pokemmo-helper-tool",
+  "version": "1.0.0",
+  "description": "A comprehensive helper tool for PokeMMO players",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "serve": "live-server --port=3000",
+    "start": "npm run build && npm run serve"
+  },
+  "keywords": ["pokemmo", "pokemon", "helper", "tool", "breeding", "calculator"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "live-server": "^1.2.2",
+    "@types/node": "^20.0.0"
+  }
+}

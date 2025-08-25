@@ -1,8 +1,6 @@
 # PokeMMO Helper Tool
 
-A comprehensive web-based, vibe-coded helper tool for PokeMMO players, built with HTML, CSS, and TypeScript.
-
-because I am bored and not taking this seriously at all.
+A comprehensive web-based helper tool for PokeMMO players, built with HTML, CSS, and TypeScript.
 
 ## Features
 
@@ -121,6 +119,194 @@ The application uses a simple tab system where each major feature is a separate 
 - Flexible grid layouts that adapt to screen size
 - Touch-friendly interface elements
 - Accessible design principles
+
+## Next Steps for Development
+
+### 1. Start with Mock Data
+The boilerplate includes mock data generators. Begin by:
+- Understanding how the data flows through the application
+- Modifying the mock data to match your needs
+- Adding new mock functions for additional features
+
+**Example - Extending mock data:**
+```typescript
+private generateMockItems(query: string): Item[] {
+  // Add more items to the mock data array
+  const mockItems: Item[] = [
+    // Add your custom items here
+    {
+      id: 4,
+      name: 'Master Ball',
+      category: ItemCategory.POKEBALLS,
+      currentPrice: 50000,
+      priceHistory: [],
+      description: 'The best Ball with the ultimate level of performance.'
+    }
+  ];
+}
+```
+
+### 2. Add Real API Integration
+Replace mock methods with actual API calls for live data:
+
+**Example - Real API integration:**
+```typescript
+// Replace generateMockItems() with real API
+private async searchItems(query: string): Promise<void> {
+  this.setLoading(true);
+  
+  try {
+    const response = await fetch(`https://api.pokemmo-hub.com/items?search=${query}`);
+    const items = await response.json();
+    this.displayItems(items);
+  } catch (error) {
+    this.showError('Failed to fetch items');
+  } finally {
+    this.setLoading(false);
+  }
+}
+
+// Add error handling and loading states
+private async fetchPokemonData(): Promise<Pokemon[]> {
+  try {
+    const response = await fetch('/api/pokemon');
+    return await response.json();
+  } catch (error) {
+    console.error('API Error:', error);
+    return this.generateMockPokemon(); // Fallback to mock data
+  }
+}
+```
+
+### 3. Extend Features
+The architecture makes it easy to add new features following these patterns:
+
+**Adding a new tab:**
+1. Add HTML structure in the main file
+2. Create corresponding method in TypeScript class
+3. Add styling following existing patterns
+
+**Example - Adding a "Teams" tab:**
+```html
+<!-- Add to navigation -->
+<button class="nav-btn" data-tab="teams">Teams</button>
+
+<!-- Add content section -->
+<section id="teams" class="tab-content">
+  <div class="container">
+    <h2>Team Builder</h2>
+    <!-- Team builder content -->
+  </div>
+</section>
+```
+
+```typescript
+// Add to loadTabData method
+case 'teams':
+  this.loadTeamBuilder();
+  break;
+
+// Add new method
+private loadTeamBuilder(): void {
+  // Implementation for team builder
+}
+```
+
+### 4. Advanced Features
+Based on PokeMMO Hub functionality, consider implementing:
+
+**Price History Charts:**
+```typescript
+// Using Chart.js or similar charting library
+private createPriceChart(item: Item): void {
+  const ctx = document.getElementById('price-chart') as HTMLCanvasElement;
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: item.priceHistory.map(p => p.date),
+      datasets: [{
+        label: 'Price History',
+        data: item.priceHistory.map(p => p.price),
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    }
+  });
+}
+```
+
+**Real-time Price Updates:**
+```typescript
+// WebSocket integration for live updates
+private setupPriceUpdates(): void {
+  const ws = new WebSocket('wss://api.pokemmo-hub.com/prices');
+  
+  ws.onmessage = (event) => {
+    const priceUpdate = JSON.parse(event.data);
+    this.updateItemPrice(priceUpdate);
+  };
+}
+```
+
+**Breeding Tree Visualization:**
+```typescript
+// Complex breeding path visualization
+private displayBreedingTree(project: BreedingProject): void {
+  const treeContainer = document.getElementById('breeding-tree');
+  // Create visual tree representation of breeding steps
+}
+```
+
+**Import/Export Functionality:**
+```typescript
+// Export user data
+public exportUserData(): void {
+  const dataBlob = new Blob([JSON.stringify(this.appData)], 
+    { type: 'application/json' });
+  const url = URL.createObjectURL(dataBlob);
+  
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'pokemmo-helper-data.json';
+  link.click();
+}
+
+// Import user data
+public importUserData(file: File): void {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      this.appData = JSON.parse(e.target?.result as string);
+      this.saveAppData();
+      this.updateDashboard();
+    } catch (error) {
+      this.showError('Invalid file format');
+    }
+  };
+  reader.readAsText(file);
+}
+```
+
+## Learning Path Recommendations
+
+### For JavaScript/TypeScript Learning:
+1. **Start with event handlers** in `setupEventListeners()` - understand DOM events
+2. **Study tab switching logic** in `showTab()` - learn DOM manipulation
+3. **Understand data management** in `loadAppData()` and `saveAppData()` - localStorage usage
+4. **Explore DOM manipulation** in methods like `createItemCard()` - dynamic content creation
+
+### For Advanced Features:
+1. **API Integration**: Replace mock data with real API calls using fetch()
+2. **State Management**: Implement more sophisticated state handling patterns
+3. **Performance**: Add caching strategies and virtual scrolling for large datasets
+4. **Testing**: Write unit tests using Jest or similar testing frameworks
+
+### Suggested Development Order:
+1. **Phase 1**: Get familiar with the existing code structure and mock data
+2. **Phase 2**: Customize the UI and add your own styling touches
+3. **Phase 3**: Implement one real API integration (start with items or Pokemon data)
+4. **Phase 4**: Add advanced features like charts or real-time updates
+5. **Phase 5**: Optimize performance and add testing
 
 ## Customization
 

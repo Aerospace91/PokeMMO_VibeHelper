@@ -3,6 +3,7 @@ import {
   UIState, 
   AppData, 
   BreedingProject, 
+  //@ts-ignore
   Investment,
   IVSpread,
   Nature,

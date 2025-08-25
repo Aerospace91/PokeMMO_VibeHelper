@@ -42,4 +42,182 @@
                         </div>
                     </div>
                     <div class="card">
-                      
+                        <h3>Recent Activity</h3>
+                        <div id="recent-activity">
+                            <p>No recent activity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Items Tab -->
+        <section id="items" class="tab-content">
+            <div class="container">
+                <h2>Item Price Tracker</h2>
+                <div class="search-bar">
+                    <input type="text" id="item-search" placeholder="Search for items...">
+                    <button id="search-btn">Search</button>
+                </div>
+                <div class="filter-controls">
+                    <select id="item-category">
+                        <option value="all">All Categories</option>
+                        <option value="pokeballs">Pokéballs</option>
+                        <option value="berries">Berries</option>
+                        <option value="medicine">Medicine</option>
+                        <option value="tms">TMs</option>
+                    </select>
+                </div>
+                <div id="items-grid" class="items-grid">
+                    <!-- Items will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Breeding Tab -->
+        <section id="breeding" class="tab-content">
+            <div class="container">
+                <h2>Breeding Calculator</h2>
+                <div class="breeding-form">
+                    <div class="form-group">
+                        <label for="pokemon-select">Select Pokémon:</label>
+                        <select id="pokemon-select">
+                            <option value="">Choose a Pokémon...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nature-select">Desired Nature:</label>
+                        <select id="nature-select">
+                            <option value="">Any Nature</option>
+                        </select>
+                    </div>
+                    <div class="iv-inputs">
+                        <h3>Target IVs</h3>
+                        <div class="iv-grid">
+                            <div class="iv-input">
+                                <label>HP</label>
+                                <input type="number" id="hp-iv" min="0" max="31" value="31">
+                            </div>
+                            <div class="iv-input">
+                                <label>Attack</label>
+                                <input type="number" id="attack-iv" min="0" max="31" value="31">
+                            </div>
+                            <div class="iv-input">
+                                <label>Defense</label>
+                                <input type="number" id="defense-iv" min="0" max="31" value="31">
+                            </div>
+                            <div class="iv-input">
+                                <label>Sp. Attack</label>
+                                <input type="number" id="spatk-iv" min="0" max="31" value="31">
+                            </div>
+                            <div class="iv-input">
+                                <label>Sp. Defense</label>
+                                <input type="number" id="spdef-iv" min="0" max="31" value="31">
+                            </div>
+                            <div class="iv-input">
+                                <label>Speed</label>
+                                <input type="number" id="speed-iv" min="0" max="31" value="31">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="calculate-breeding">Calculate Breeding Path</button>
+                </div>
+                <div id="breeding-results" class="breeding-results">
+                    <!-- Breeding results will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Pokédex Tab -->
+        <section id="pokedex" class="tab-content">
+            <div class="container">
+                <h2>Pokédex</h2>
+                <div class="pokedex-filters">
+                    <input type="text" id="pokemon-search" placeholder="Search Pokémon...">
+                    <select id="region-filter">
+                        <option value="all">All Regions</option>
+                        <option value="kanto">Kanto</option>
+                        <option value="johto">Johto</option>
+                        <option value="hoenn">Hoenn</option>
+                        <option value="sinnoh">Sinnoh</option>
+                        <option value="unova">Unova</option>
+                    </select>
+                    <select id="type-filter">
+                        <option value="all">All Types</option>
+                        <option value="normal">Normal</option>
+                        <option value="fire">Fire</option>
+                        <option value="water">Water</option>
+                        <option value="electric">Electric</option>
+                        <option value="grass">Grass</option>
+                        <option value="ice">Ice</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="poison">Poison</option>
+                        <option value="ground">Ground</option>
+                        <option value="flying">Flying</option>
+                        <option value="psychic">Psychic</option>
+                        <option value="bug">Bug</option>
+                        <option value="rock">Rock</option>
+                        <option value="ghost">Ghost</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="dark">Dark</option>
+                        <option value="steel">Steel</option>
+                        <option value="fairy">Fairy</option>
+                    </select>
+                </div>
+                <div id="pokemon-grid" class="pokemon-grid">
+                    <!-- Pokémon will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Tab -->
+        <section id="tools" class="tab-content">
+            <div class="container">
+                <h2>Additional Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h3>Catch Rate Calculator</h3>
+                        <p>Calculate the probability of catching Pokémon</p>
+                        <button class="tool-btn" data-tool="catch-rate">Open Tool</button>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Egg Move Helper</h3>
+                        <p>Find breeding paths for egg moves</p>
+                        <button class="tool-btn" data-tool="egg-moves">Open Tool</button>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Berry Timer</h3>
+                        <p>Track your berry farming timers</p>
+                        <button class="tool-btn" data-tool="berry-timer">Open Tool</button>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Investment Tracker</h3>
+                        <p>Track your item investments and profits</p>
+                        <button class="tool-btn" data-tool="investments">Open Tool</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for tool dialogs -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 PokeMMO Helper Tool. Created for the PokeMMO community.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="dist/main.js"></script>
+</body>
+</html>
